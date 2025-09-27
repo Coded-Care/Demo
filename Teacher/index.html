@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zephyr Sight</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen">
+        <div class="login-container">
+            <div class="login-box">
+                <h1>Login</h1>
+                <p class="subtitle">Need access? Contact Administrator</p>
+                <input type="text" id="username" placeholder="Teacher ID" class="input-field">
+                <input type="password" id="password" placeholder="Password" class="input-field">
+                <button onclick="login()" class="login-btn">Login</button>
+                <p class="footer-text">Authorized Personnel Only</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" class="screen">
+        <!-- Enhanced Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="app-logo">
+                    <div class="logo-icon">🔍</div>
+                    <h1 class="app-title">Zephyr Sight</h1>
+                </div>
+                <div class="user-info">
+                    <span class="user-role">Teacher Dashboard</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="notification-container">
+                    <button class="notification-btn" onclick="toggleNotifications()">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    
+                    <!-- Notification Dropdown -->
+                    <div id="notificationDropdown" class="notification-dropdown">
+                        <div class="notification-header">
+                            <h4>Notifications</h4>
+                            <button class="clear-all" onclick="clearAllNotifications()">Clear All</button>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item">
+                                <div class="notification-icon-small">⚠️</div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Disengagement Alert</div>
+                                    <div class="notification-desc">Student in Class 9A showing signs of disengagement</div>
+                                    <div class="notification-time">2 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon-small">😔</div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Emotional Distress</div>
+                                    <div class="notification-desc">Student showing signs of distress in Class 9A</div>
+                                    <div class="notification-time">5 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon-small">📊</div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Attendance Complete</div>
+                                    <div class="notification-desc">Daily attendance has been recorded for Class 9A</div>
+                                    <div class="notification-time">12 minutes ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="logout()" class="logout-btn">
+                    <span class="logout-icon">🚪</span>
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Enhanced Toggle Switch -->
+            <div class="tab-switcher">
+                <div class="switch-container">
+                    <input type="checkbox" id="tabSwitch" class="switch-input">
+                    <label for="tabSwitch" class="switch-label">
+                        <span class="switch-slider"></span>
+                        <span class="switch-text left">Overview</span>
+                        <span class="switch-text right">Attendance</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overviewTab" class="tab-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Today's Attendance</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-value">92%</div>
+                        <div class="stat-label">Behavior Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-value">76%</div>
+                        <div class="stat-label">Engagement</div>
+                    </div>
+                </div>
+
+                <!-- Emotions Chart -->
+                <div class="chart-section">
+                    <h3>Student Emotions Overview</h3>
+                    <div class="emotions-chart">
+                        <div class="emotion-bar">
+                            <div class="emotion-label">😊 Happy</div>
+                            <div class="emotion-progress">
+                                <div class="emotion-fill happy" style="width: 65%"></div>
+                            </div>
+                            <span class="emotion-percent">65%</span>
+                        </div>
+                        <div class="emotion-bar">
+                            <div class="emotion-label">😐 Neutral</div>
+                            <div class="emotion-progress">
+                                <div class="emotion-fill neutral" style="width: 25%"></div>
+                            </div>
+                            <span class="emotion-percent">25%</span>
+                        </div>
+                        <div class="emotion-bar">
+                            <div class="emotion-label">😟 Worried</div>
+                            <div class="emotion-progress">
+                                <div class="emotion-fill worried" style="width: 10%"></div>
+                            </div>
+                            <span class="emotion-percent">10%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Alerts -->
+                <div class="alerts-section">
+                    <h3>Recent Alerts</h3>
+                    <div class="alert-item">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Disengagement Detected</div>
+                            <div class="alert-time">2 minutes ago • Class 9A</div>
+                        </div>
+                    </div>
+                    <div class="alert-item">
+                        <div class="alert-icon">📊</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Attendance Complete</div>
+                            <div class="alert-time">5 minutes ago • Class 9A</div>
+                        </div>
+                    </div>
+                    <div class="alert-item">
+                        <div class="alert-icon">😔</div>
+                        <div class="alert-content">
+                            <div class="alert-title">Student showing signs of distress</div>
+                            <div class="alert-time">12 minutes ago • Class 9A</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class Schedule -->
+                <div class="schedule-section">
+                    <h3>Today's Schedule</h3>
+                    <div class="schedule-item current">
+                        <div class="schedule-time">09:00 - 10:30</div>
+                        <div class="schedule-details">
+                            <div class="schedule-subject">Mathematics</div>
+                            <div class="schedule-class">Class 9A • Room 101</div>
+                        </div>
+                        <div class="schedule-status">Current</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">10:45 - 12:15</div>
+                        <div class="schedule-details">
+                            <div class="schedule-subject">Physics</div>
+                            <div class="schedule-class">Class 9B • Room 203</div>
+                        </div>
+                        <div class="schedule-status">Next</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Tab -->
+            <div id="attendanceTab" class="tab-content" style="display: none;">
+                <div class="attendance-section">
+                    <div class="attendance-header">
+                        <h3>Class 9A - Attendance Record</h3>
+                        <div class="attendance-date">
+                            <label>Date: </label>
+                            <input type="date" id="attendanceDate" value="2025-09-26">
+                        </div>
+                    </div>
+                    
+                    <div class="attendance-summary">
+                        <div class="summary-card present">
+                            <div class="summary-value">28</div>
+                            <div class="summary-label">Present</div>
+                        </div>
+                        <div class="summary-card absent">
+                            <div class="summary-value">5</div>
+                            <div class="summary-label">Absent</div>
+                        </div>
+                        <div class="summary-card total">
+                            <div class="summary-value">33</div>
+                            <div class="summary-label">Total</div>
+                        </div>
+                    </div>
+
+                    <div class="attendance-table-container">
+                        <table class="attendance-table">
+                            <thead>
+                                <tr>
+                                    <th>Roll No.</th>
+                                    <th>Student Name</th>
+                                    <th>Status</th>
+                                    <th>Time In</th>
+                                    <th>Emotion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>001</td>
+                                    <td>Aarav Sharma</td>
+                                    <td><span class="status-badge present">Present</span></td>
+                                    <td>09:05 AM</td>
+                                    <td>😊</td>
+                                </tr>
+                                <tr>
+                                    <td>002</td>
+                                    <td>Ananya Gupta</td>
+                                    <td><span class="status-badge present">Present</span></td>
+                                    <td>09:03 AM</td>
+                                    <td>😐</td>
+                                </tr>
+                                <tr>
+                                    <td>003</td>
+                                    <td>Arjun Patel</td>
+                                    <td><span class="status-badge absent">Absent</span></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>004</td>
+                                    <td>Diya Singh</td>
+                                    <td><span class="status-badge present">Present</span></td>
+                                    <td>09:08 AM</td>
+                                    <td>😊</td>
+                                </tr>
+                                <tr>
+                                    <td>005</td>
+                                    <td>Ishaan Kumar</td>
+                                    <td><span class="status-badge present">Present</span></td>
+                                    <td>09:02 AM</td>
+                                    <td>😟</td>
+                                </tr>
+                                <tr>
+                                    <td>006</td>
+                                    <td>Kavya Reddy</td>
+                                    <td><span class="status-badge present">Present</span></td>
+                                    <td>09:07 AM</td>
+                                    <td>😊</td>
+                                </tr>
+                                <tr>
+                                    <td>007</td>
+                                    <td>Aryan Mehta</td>
+                                    <td><span class="status-badge absent">Absent</span></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>008</td>
+                                    <td>Priya Joshi</td>
+                                    <td><span class="status-badge present">Present</span></td>
+                                    <td>09:04 AM</td>
+                                    <td>😐</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
